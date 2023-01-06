@@ -19,6 +19,8 @@ def main():
 
     else: 
         print(priceResponse)
+
+    writeLineToFile(userName, flowerNameCapitalized, priceResponse)
     
 #This block of code is defining the function readAllFlowers and uses a test file.
 def readAllFlowers():
@@ -43,6 +45,14 @@ def readAllFlowers():
     
     return flowers
         
+def writeLineToFile(userName, flowerName, flowerPrice):
+    userInquiriesFile =open("userInquiries.txt", "a")
+    if type(flowerPrice)==float:
+        userInquiriesFile.write(userName + " inquired about the " + str(flowerPrice) + " " + flowerName + " flower.\n")
+    else:
+        userInquiriesFile.write(userName + " inquired about the " + flowerName + " that is out of stock.\n")
+    userInquiriesFile.close()
+     
 
 
 def get_price(flowers, flowerName):
